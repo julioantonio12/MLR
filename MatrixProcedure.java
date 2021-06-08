@@ -16,10 +16,6 @@ public class MatrixProcedure implements MLRProcedure {
         double[][] firstPart = operations.invert(operations.multiply(matrices.xTransposed, matrices.x));
         double[][] secondPart = operations.multiply(matrices.xTransposed, y);
         double[][] thirdPart = operations.multiply(firstPart, secondPart);
-        for (int i = 0; i < thirdPart.length; i++) {
-            for (int j = 0; j < 1; j++) {
-            }
-        }
         DataRegister dt = new DataRegister(thirdPart[0][0], thirdPart[1][0], thirdPart[2][0]);
         return dt;
     }
