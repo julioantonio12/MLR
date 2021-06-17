@@ -7,12 +7,11 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.DFService;
 
 public class MLRAgent extends Agent {
-	int TOTAL_REGISTERS = 17;
   	MLR mlr;
   	MLRGui myGui;
   	protected void setup() {
     	System.out.println("Agent " + getLocalName() + " started.");
-    	mlr = new MLR(new MatrixProcedure());
+    	mlr = new MLR(new CramerProcedure());
     	mlr.setData(this.getDataset());
 		myGui = new MLRGui(this);
     	myGui.showGui();
