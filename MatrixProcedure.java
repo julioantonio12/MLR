@@ -13,10 +13,10 @@ public class MatrixProcedure implements MLRProcedure {
         Matrices matrices = transformIndependentToMatrix(data);
 
         double[][] y = getYMatrix(data);
-        double[][] firstPart = operations.invert(operations.multiply(matrices.xTransposed, matrices.x));
-        double[][] secondPart = operations.multiply(matrices.xTransposed, y);
-        double[][] thirdPart = operations.multiply(firstPart, secondPart);
-        DataRegister dt = new DataRegister(thirdPart[0][0], thirdPart[1][0], thirdPart[2][0]);
+        double[][] a = operations.invert(operations.multiply(matrices.xT, matrices.x));
+        double[][] b = operations.multiply(matrices.xT, y);
+        double[][] result = operations.multiply(a, b);
+        DataRegister dt = new DataRegister(result[0][0], result[1][0], result[2][0]);
         return dt;
     }
 
@@ -34,7 +34,7 @@ public class MatrixProcedure implements MLRProcedure {
         }
         Matrices result = new Matrices();
         result.x = matrix;
-        result.xTransposed = transposed;
+        result.xT = transposed;
         return result;
     }
 
@@ -49,5 +49,5 @@ public class MatrixProcedure implements MLRProcedure {
 
 class Matrices {
     double x[][];
-    double xTransposed[][];
+    double xT[][];
 }
